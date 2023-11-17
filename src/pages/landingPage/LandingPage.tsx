@@ -40,13 +40,15 @@ const LandingPage = () => {
     const [selectedOption, setSelectedOption] = useState<string>('rocketName');
 
 
+
     useEffect(() => {
+
         if(loading !== true){
             setUpcomingLaunches(data.launchesUpcoming);
-        }else{
-            setUpcomingLaunches([]);
         }
-    }, [upcomingLaunches]);
+        
+    }, [loading]);
+
 
     useEffect(() => {
         let filteredUpcomingLaun = upcomingLaunches.filter((item: IUpcomingLaunchProps) => item.rocket.rocket_name.toLowerCase().includes(stringToSearch));
@@ -56,7 +58,11 @@ const LandingPage = () => {
     }, [upcomingLaunches,stringToSearch]);
 
 
-    const handlerSearch = (e: any) => {
+    const handlerSelectedOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedOption(e.target.value);
+    }
+
+    const handlerSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const string = e.target.value.toLowerCase();
         setStringToSearch(string);
     }
@@ -72,9 +78,10 @@ const LandingPage = () => {
             </header>
 
             <main>
+                
                 <label>
                     Filter by:
-                    <select value={selectedOption} onChange={e => setSelectedOption(e.target.value)}>
+                    <select value={selectedOption} onChange={handlerSelectedOption}>
                         <option value="rocketName">Rocket Name</option>
                         <option value="date">Date</option>
                         <option value="ascdesc">Ascending and descending</option>
