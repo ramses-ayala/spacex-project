@@ -25,7 +25,7 @@ const UpcomingLaunch: React.FC<IUpcomingLaunchProps> = ({id, mission_name, launc
                 <div className="card-body">
                     <p>rocket name: {rocket.rocket_name}</p>
                     <p className="card-text">launch date:{formatDate(launch_date_utc)}</p>
-                    <Link to={`/launchDetail/${id}`} className="btn btn-success">More details</Link>
+                    <Link to={`/launchDetail?id=${id}`} className="btn btn-success">More details</Link>
                 </div>
             </div>
         </div>

@@ -1,4 +1,7 @@
 
+// react
+import { useEffect } from 'react';
+
 // apollo
 import { useQuery, gql } from '@apollo/client';
 
@@ -29,13 +32,39 @@ const GET_UPCOMING_LAUNCHES = gql`
 const LandingPage = () => {
 
     const {error, loading, data} = useQuery(GET_UPCOMING_LAUNCHES);
+
+    const [upcomingLaunches, setUpcomingLaunches] = useState([]);
+    const [filteredUpcomingLaunches, setFilteredUpcomingLaunhes] = useState(upcomingLaunches);
+    const [stringToSearch, setStringToSearch] = useState<string>('');
+
     const [selectedOption, setSelectedOption] = useState<string>('rocketName');
+
+
+    useEffect(() => {
+        if(loading !== true){
+            setUpcomingLaunches(data.launchesUpcoming);
+        }else{
+            setUpcomingLaunches([]);
+        }
+    }, [upcomingLaunches]);
+
+    useEffect(() => {
+        let filteredUpcomingLaun = upcomingLaunches.filter((item: IUpcomingLaunchProps) => item.rocket.rocket_name.toLowerCase().includes(stringToSearch));
+        
+        setFilteredUpcomingLaunhes(filteredUpcomingLaun);
+
+    }, [upcomingLaunches,stringToSearch]);
+
+
+    const handlerSearch = (e: any) => {
+        const string = e.target.value.toLowerCase();
+        setStringToSearch(string);
+    }
 
     if(loading) return <p>Loading...</p>;
 
     if(error) return <p className='text-danger'>{error.name}</p>
     
-
     return(
         <div className="container-xl">
             <header>
@@ -53,7 +82,7 @@ const LandingPage = () => {
                 </label>
 
                 {selectedOption === 'rocketName' ? 
-                    <input type='search' />
+                    <input type='search' placeholder='Search By Rocket Name' onChange={handlerSearch}/>
                     :
                     selectedOption === 'date' ?
                     <input type='date' />
@@ -62,7 +91,7 @@ const LandingPage = () => {
                 }
             
                 <div className="row">
-                    {data?.launchesUpcoming.map((launch: IUpcomingLaunchProps) => (
+                    {filteredUpcomingLaunches.map((launch: IUpcomingLaunchProps) => (
                             <UpcomingLaunch 
                                 key={launch.id}
                                 id={launch.id}
