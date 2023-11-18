@@ -24,6 +24,9 @@ const GET_UPCOMING_LAUNCHES = gql`
         upcoming
         rocket {
             rocket_name
+            rocket {
+                id
+            }
         }
     }
   }
@@ -51,6 +54,7 @@ const LandingPage = () => {
 
 
     useEffect(() => {
+
         let filteredUpcomingLaun = upcomingLaunches.filter((item: IUpcomingLaunchProps) => item.rocket.rocket_name.toLowerCase().includes(stringToSearch));
         
         setFilteredUpcomingLaunhes(filteredUpcomingLaun);
