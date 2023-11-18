@@ -10,7 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const client = new ApolloClient({
-  uri: 'https://main--spacex-l4uc6p.apollographos.net/graphql',
+  //uri: 'https://main--spacex-l4uc6p.apollographos.net/graphql',
+  uri: 'https://spacex-production.up.railway.app',
   cache: new InMemoryCache(),
 });
 

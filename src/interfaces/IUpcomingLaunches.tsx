@@ -4,6 +4,8 @@ export interface IUpcomingLaunchProps {
     launch_date_utc: string,
     rocket: {
         rocket_name: string;
-        rocket_type: string;
+        rocket: {
+            id: string
+        }
     }
 }

@@ -2,16 +2,17 @@ import { useSearchParams } from "react-router-dom";
 
 import { useQuery, gql } from '@apollo/client';
 
+
 export interface ILaunchDetailProps {}
 
 //
-const GET_MISSION_BY_ID = gql`
-  query Mission ($id: String!){
-    mission(id: $id) {
-        id
+const GET_ROCKET_BY_ID = gql`
+  query Rocket ($id: ID!){
+    rocket(id: $id) {
         description
-        manufacturers
+        id
         name
+        wikipedia
     }
   }
 `;
@@ -20,8 +21,8 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
 
     const [searchParams] = useSearchParams();
     const id = searchParams.get('id');
-
-    const result = useQuery(GET_MISSION_BY_ID, {
+    
+    const result = useQuery(GET_ROCKET_BY_ID, {
         variables: {id}
     });
 
