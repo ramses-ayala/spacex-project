@@ -1,21 +1,12 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+
+// queries
+import { GET_ROCKET_BY_ID } from "../../graphql/queries/getRocketById";
 
 
 export interface ILaunchDetailProps {}
-
-//
-const GET_ROCKET_BY_ID = gql`
-  query Rocket ($id: ID!){
-    rocket(id: $id) {
-        description
-        id
-        name
-        wikipedia
-    }
-  }
-`;
 
 const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
 
@@ -32,6 +23,8 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
         <div className="">
             <h1>Launch Detail</h1>
             <p>id: {id}</p>
+
+            <Link to={`/`}>Go Back</Link>
         </div>
     )
 }
