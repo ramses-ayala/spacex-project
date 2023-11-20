@@ -4,19 +4,10 @@ import { Link } from "react-router-dom";
 // interfaces
 import { IUpcomingLaunchProps } from "../../interfaces/IUpcomingLaunches";
 
+//utils
+import { formatDate } from "../../utils/formatDate";
+
 const UpcomingLaunch: React.FC<IUpcomingLaunchProps> = ({id, mission_name, launch_date_utc, rocket}) => {
-
-    
-    const formatDate = (date: string): string => {
-
-        const formattedDate = new Date(date).toLocaleDateString("es-ES", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        });
-
-        return formattedDate;
-    }
 
     return (
         <div className="col-md-6">
