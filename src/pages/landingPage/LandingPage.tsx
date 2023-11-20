@@ -4,7 +4,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 // apollo
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+
+// queries
+import { GET_UPCOMING_LAUNCHES } from '../../graphql/queries/upcomingLaunches';
 
 // components
 import UpcomingLaunch from '../../components/upcomingLaunch/UpcomingLaunch';
@@ -16,24 +19,7 @@ import { IUpcomingLaunchProps } from '../../interfaces/IUpcomingLaunches';
 import { dashFormatDate } from '../../utils/dashFormatDate';
 
 
-//
-const GET_UPCOMING_LAUNCHES = gql`
-  query LaunchesUpcoming{
-    launchesUpcoming {
-        id
-        launch_date_utc
-        mission_id
-        mission_name
-        upcoming
-        rocket {
-            rocket_name
-            rocket {
-                id
-            }
-        }
-    }
-  }
-`;
+
 
 const LandingPage = () => {
 
@@ -52,7 +38,7 @@ const LandingPage = () => {
         if(loading !== true){
             setUpcomingLaunches(data.launchesUpcoming);
         }
-    }, [data,loading]);
+    }, [loading, selectedOption]);
 
 
     useEffect(() => {
@@ -68,7 +54,7 @@ const LandingPage = () => {
         let filteredUpcomingLaun = upcomingLaunches.filter((item: IUpcomingLaunchProps) => dashFormatDate(item.launch_date_utc) === dateToSearch);
         setFilteredUpcomingLaunhes(filteredUpcomingLaun);
         
-    }, [upcomingLaunches,dateToSearch]);
+    }, [dateToSearch]);
 
 
 
