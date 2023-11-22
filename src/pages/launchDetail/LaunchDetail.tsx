@@ -44,8 +44,6 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
         }
     }, [result]);
 
-
-
     const showRocketInfo = (id: string) => {
         getRocketInfo({variables: { id }});
     }
@@ -68,7 +66,7 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
                         </div>
         
 
-    if(error) return <p>{error.name}</p>
+    if(error) return <p className="text-white fs-1 fs-1 text-center">{error?.message !== 'Failed to fetch' ? 'No records :(' : 'There is an issue fetching data :('}</p>
     
     return (
         <div className="container-xl mt-3 launch-detail-card">
