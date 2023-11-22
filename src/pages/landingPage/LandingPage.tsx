@@ -31,6 +31,7 @@ const LandingPage = () => {
     const [dateToSearch, setDateToSearch] = useState<string>("");
 
     const [selectedOption, setSelectedOption] = useState<string>("rocketName");
+    const [isSortedAsc, setIsSortedAsc] = useState<boolean>(false);
 
 
     useEffect(() => {
@@ -57,6 +58,31 @@ const LandingPage = () => {
 
     }, [dateToSearch]);
 
+
+    const handlerSortedByDate = () => {
+
+        if(isSortedAsc){
+            // ascendente
+            upcomingLaunches.sort((a: IUpcomingLaunchProps,b: IUpcomingLaunchProps) => {
+                const dateA = new Date(a.launch_date_utc.split('T')[0]);
+                const dateB = new Date(b.launch_date_utc.split('T')[0]);
+
+                return dateB.getTime() - dateA.getTime();
+            });
+        }else{
+            // descendente
+            upcomingLaunches.sort((a: IUpcomingLaunchProps,b: IUpcomingLaunchProps) => {
+                const dateA = new Date(a.launch_date_utc.split('T')[0]);
+                const dateB = new Date(b.launch_date_utc.split('T')[0]);
+
+                return dateA.getTime() - dateB.getTime();
+            });
+        }
+
+        setIsSortedAsc(!isSortedAsc);
+        setFilteredUpcomingLaunhes(upcomingLaunches);
+
+    }
 
     const handlerSelectedOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedOption(e.target.value);
@@ -94,7 +120,7 @@ const LandingPage = () => {
         <div className="container-xl">
 
             <main>
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center text-center">
 
                     <div className="d-flex flex-column gap-2 w-30 mb-4">
 
@@ -108,7 +134,6 @@ const LandingPage = () => {
                             <option value="date">Date</option>
                         </select>
 
-
                         {selectedOption === "rocketName" ? (
                             <TextBox
                                 placeholder='Search By Rocket Name'
@@ -119,6 +144,8 @@ const LandingPage = () => {
                                 handlerDate={handlerDate}
                             />
                         )}
+                    <p className="text-white mt-4 fs-4 fw-bold">Order ascending or descending</p>
+                    <button onClick={handlerSortedByDate}>{isSortedAsc ? 'Order DESC' : 'Order ASC'}</button>
                     </div>
                 </div>
 
