@@ -94,7 +94,9 @@ const LandingPage = () => {
             <main>
                 <div className="d-flex justify-content-center">
 
-                    <div className="d-flex flex-column gap-2 w-25 mb-4">
+                    <div className="d-flex flex-column gap-2 w-30 mb-4">
+
+                        <h1 className="text-white">Upcoming Launches</h1>
 
                         <label className="text-white">
                             Filter by:
@@ -121,7 +123,7 @@ const LandingPage = () => {
                     </div>
                 </div>
 
-                <div className="row">
+                <div className="row mt-4">
                     {filteredUpcomingLaunches.map((launch: IUpcomingLaunchProps) => (
                         <UpcomingLaunch
                             key={launch.id}

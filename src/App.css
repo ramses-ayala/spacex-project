@@ -1,8 +1,17 @@
 body{
-    background-image: url(./assets/astr-spacex.png);
+    background-image: url(./assets/spacex-img.jpg);
     background-position: center center;
+    background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
+}
+
+.card-customized{
+    background-color:rgba(34, 64, 124, 0.6);
+    border: 1px solid rgb(202, 177, 85);
+    border-radius: .8rem;
+    color: #fff;
+    filter:brightness(.7);
 }

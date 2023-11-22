@@ -45,7 +45,7 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
 
     if(rocketInfo){
         return(
-            <div className="card text-center">
+            <div className="container-xl card-customized text-center py-4">
                 <p>Name: {rocketInfo.name}</p>
                 <p>Rocket Type: {rocketInfo.type}</p>
                 <p>Description: {rocketInfo.description}</p>
@@ -54,17 +54,16 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
         )
     }
     
-    if(loading) return <p>Loading...</p>;
+    if(loading) return <p className="text-white">Loading...</p>;
 
     if(error) return <p>{error.name}</p>
     
     return (
         <div className="container-xl">
-          
-            <h1>Launch Detail</h1>
-            <div className="card text-center">
-                <p className="text-primary">Site Information: {data.launch.launch_site !== null ? data.launch.launch_site : 'No site information available'}</p>
-                <div className="card-body border border-primary">
+            <div className="card-customized text-center py-4">
+                <h1>Launch Detail</h1>
+                <p className="">Site Information: {data.launch.launch_site !== null ? data.launch.launch_site : 'No site information available'}</p>
+                <div className="card-body">
                     <p>Mission Name: {data.launch.mission_name}</p>
                     <p>Youtube link: {data.launch.links.video_link !== null ? data.launch.links.video_link : 'No Youtube link available'}</p>
                     <p onClick={() => showRocketInfo(data.launch.rocket.rocket.id)}>About Rocket used in this launch</p>
@@ -72,7 +71,7 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
             </div>
 
             <div className="text-center">
-                <Link to={`/`}>Go Back</Link>
+                <Link to={`/`} className="text-white">Go Back</Link>
             </div>
         </div>
     )
