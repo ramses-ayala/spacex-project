@@ -26,8 +26,7 @@ const LandingPage = () => {
     const { error, loading, data } = useQuery(GET_UPCOMING_LAUNCHES);
 
     const [upcomingLaunches, setUpcomingLaunches] = useState([]);
-    const [filteredUpcomingLaunches, setFilteredUpcomingLaunhes] =
-        useState(upcomingLaunches);
+    const [filteredUpcomingLaunches, setFilteredUpcomingLaunhes] = useState(upcomingLaunches);
     const [stringToSearch, setStringToSearch] = useState<string>("");
     const [dateToSearch, setDateToSearch] = useState<string>("");
 
@@ -107,7 +106,6 @@ const LandingPage = () => {
                         <select value={selectedOption} onChange={handlerSelectedOption}>
                             <option value="rocketName">Rocket Name</option>
                             <option value="date">Date</option>
-                            <option value="ascdesc">Ascending and descending</option>
                         </select>
 
 
@@ -116,12 +114,10 @@ const LandingPage = () => {
                                 placeholder='Search By Rocket Name'
                                 handlerSearch={handlerSearch}
                             />
-                        ) : selectedOption === "date" ? (
+                        ) : (
                             <DateBox
                                 handlerDate={handlerDate}
                             />
-                        ) : (
-                            <p>ascending and descending</p>
                         )}
                     </div>
                 </div>
