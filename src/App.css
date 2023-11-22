@@ -14,4 +14,21 @@ body{
     border-radius: .8rem;
     color: #fff;
     filter:brightness(.7);
+    z-index: 2;
+}
+
+/*btn upcoming launches and */
+.btn-custom{
+    background-color: white;
+    border-radius: .3rem;
+    color: #000;
+    text-decoration: none;
+    padding: .5rem 4rem;
+    cursor: pointer!important;
+}
+
+@media (min-width: 768px){
+    .btn-custom{
+        padding: .5rem 2rem;
+    }
 }

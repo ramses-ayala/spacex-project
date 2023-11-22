@@ -83,7 +83,10 @@ const LandingPage = () => {
         setDateToSearch(date);
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <div className="d-flex flex-column align-items-center text-white">
+                            <div className="spinner-border" role="status" aria-hidden="true" style={{height: '5rem', width: '5rem'}}></div>
+                            <strong>Loading...</strong>
+                        </div>
 
     if (error) return <p className="text-danger">{error.name}</p>;
 
