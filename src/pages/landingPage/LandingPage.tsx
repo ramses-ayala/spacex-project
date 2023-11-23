@@ -12,6 +12,7 @@ import { GET_UPCOMING_LAUNCHES } from "../../graphql/queries/upcomingLaunches";
 import UpcomingLaunch from "../../components/upcomingLaunch/UpcomingLaunch";
 import TextBox from "../../components/textBox/TextBox";
 import DateBox from "../../components/dateBox/DateBox";
+import Loading from "../../components/loading/Loading";
 
 // interfaces
 import { IUpcomingLaunchProps } from "../../interfaces/IUpcomingLaunches";
@@ -108,10 +109,7 @@ const LandingPage = () => {
         setDateToSearch(date);
     };
 
-    if (loading) return <div className="d-flex flex-column align-items-center text-white">
-                            <div className="spinner-border" role="status" aria-hidden="true" style={{height: '5rem', width: '5rem'}}></div>
-                            <strong>Loading...</strong>
-                        </div>
+    if (loading) return <Loading />;
 
     if (error) return <p className="text-danger">{error.name}</p>;
 

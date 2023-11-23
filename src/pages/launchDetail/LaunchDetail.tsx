@@ -7,8 +7,12 @@ import ReactPlayer from "react-player/youtube";
 // apollo
 import { useQuery, useLazyQuery } from '@apollo/client';
 
-// router - dom
+// router
 import { useSearchParams, Link } from "react-router-dom";
+
+
+// components
+import Loading from "../../components/loading/Loading";
 
 // queries
 import { GET_LAUNCH_BY_ID } from "../../graphql/queries/getLaunchById";
@@ -60,10 +64,7 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
         )
     }
     
-    if(loading) return <div className="d-flex flex-column align-items-center text-white" style={{height: '78vh'}}>
-                            <div className="spinner-border" role="status" aria-hidden="true" style={{height: '5rem', width: '5rem'}}></div>
-                            <strong>Loading...</strong>
-                        </div>
+    if(loading) return <Loading />;
         
 
     if(error) return <p className="text-white fs-1 fs-1 text-center">{error?.message !== 'Failed to fetch' ? 'No records :(' : 'There is an issue fetching data :('}</p>
