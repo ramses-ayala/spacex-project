@@ -63,20 +63,21 @@ const LandingPage = () => {
     const handlerSortedByDate = () => {
 
         if(isSortedAsc){
-            // ascendente
+            // ascending
             upcomingLaunches.sort((a: IUpcomingLaunchProps,b: IUpcomingLaunchProps) => {
-                const dateA = new Date(a.launch_date_utc.split('T')[0]);
-                const dateB = new Date(b.launch_date_utc.split('T')[0]);
+                const dateA = new Date(a.launch_date_utc).getTime();
+                const dateB = new Date(b.launch_date_utc).getTime();
 
-                return dateB.getTime() - dateA.getTime();
+                return dateB - dateA;
             });
         }else{
-            // descendente
-            upcomingLaunches.sort((a: IUpcomingLaunchProps,b: IUpcomingLaunchProps) => {
-                const dateA = new Date(a.launch_date_utc.split('T')[0]);
-                const dateB = new Date(b.launch_date_utc.split('T')[0]);
+            // descending
+            upcomingLaunches.sort((a: IUpcomingLaunchProps ,b: IUpcomingLaunchProps) => {
 
-                return dateA.getTime() - dateB.getTime();
+                const dateA = new Date(a.launch_date_utc).getTime();
+                const dateB = new Date(b.launch_date_utc).getTime();
+                
+                return dateA - dateB;
             });
         }
 
@@ -84,10 +85,6 @@ const LandingPage = () => {
         setFilteredUpcomingLaunhes(upcomingLaunches);
 
     }
-
-    const handlerSelectedOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedOption(e.target.value);
-    };
 
     const handlerSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const string = e.target.value.toLowerCase();
@@ -120,19 +117,20 @@ const LandingPage = () => {
             <main>
                 <div className="d-flex justify-content-center text-center">
 
-                    <div className="d-flex flex-column gap-2 w-30 mb-4">
+                    <div className="d-flex flex-column gap-2 w-30 mb-4 text-white">
 
-                        <h1 className="text-white">Upcoming Launches</h1>
+                        <h1 className="">Upcoming Launches</h1>
 
-                        <label className="text-white">
+                        <label className="">
                             Filter by:
                         </label>
-                        <select value={selectedOption} onChange={handlerSelectedOption}>
+
+                        <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
                             <option value="rocketName">Rocket Name</option>
                             <option value="date">Date</option>
                         </select>
 
-                        {selectedOption === "rocketName" ? (
+                        {selectedOption !== "date" ? (
                             <TextBox
                                 placeholder='Search By Rocket Name'
                                 handlerSearch={handlerSearch}
@@ -142,8 +140,10 @@ const LandingPage = () => {
                                 handlerDate={handlerDate}
                             />
                         )}
-                    <p className="text-white mt-4 fs-4 fw-bold">Order ascending or descending</p>
-                    <button onClick={handlerSortedByDate}>{isSortedAsc ? 'Order DESC' : 'Order ASC'}</button>
+
+                        <p className="mt-4 fs-4 fw-bold">Sort ascending or descending</p>
+                        <button onClick={handlerSortedByDate}>{isSortedAsc ? 'DESC' : 'ASC'}</button>
+
                     </div>
                 </div>
 
