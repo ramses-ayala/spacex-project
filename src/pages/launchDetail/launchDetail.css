@@ -1,0 +1,9 @@
+.launch-detail-card .btn-custom{
+    width: 60%;
+}
+
+@media (min-width: 768px){
+    .launch-detail-card .btn-custom{
+        width: 35%;
+    }
+}
