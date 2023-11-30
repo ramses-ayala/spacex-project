@@ -2,6 +2,8 @@ import { Outlet, Link } from "react-router-dom"
 
 import logo from "../../assets/logo.jpeg";
 
+
+
 const Navbar = () => {
   return (
     <>
