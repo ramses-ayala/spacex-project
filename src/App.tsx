@@ -14,9 +14,9 @@ function App() {
    <Router>
     <Routes>
       <Route path='/' element={<Navbar />} > 
-        <Route index element={<LandingPage />}/>
+        <Route path='/spacex-project' element={<LandingPage />}/>
         <Route path='/launchDetail' element={<LaunchDetail />}/>
-        <Route path='*' element={<p>Page not found :(</p>} />
+        <Route path='*' element={<h1 className='text-white'>Page not found :(</h1>} />
       </Route>
     </Routes>
    </Router>
