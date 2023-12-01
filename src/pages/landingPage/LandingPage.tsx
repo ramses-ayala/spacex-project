@@ -31,7 +31,7 @@ const LandingPage = () => {
     const [stringToSearch, setStringToSearch] = useState<string>("");
     const [dateToSearch, setDateToSearch] = useState<string>("");
 
-    const [isTextBoxSelected, setIsTextBoxSelected] = useState<boolean>(false);
+    const [optionSelected, setOptionlSelected] = useState<string>('rocketName');
     const [isSortedAsc, setIsSortedAsc] = useState<boolean>(false);
     
 
@@ -125,12 +125,12 @@ const LandingPage = () => {
                             Filter by:
                         </label>
 
-                        <select onChange={() => setIsTextBoxSelected(isTextBoxSelected)}>
+                        <select value={optionSelected} onChange={(e) => setOptionlSelected(e.target.value)}>
                             <option value="rocketName">Rocket Name</option>
                             <option value="date">Date</option>
                         </select>
 
-                        {isTextBoxSelected !== false ? (
+                        {optionSelected !== 'date' ? (
                             <TextBox
                                 placeholder='Search By Rocket Name'
                                 handlerSearch={handlerSearch}
