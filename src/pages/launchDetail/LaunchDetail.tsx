@@ -90,7 +90,7 @@ const LaunchDetail: React.FC<ILaunchDetailProps> = () => {
             </div>
 
             <div className="text-center my-4">
-                <Link to={`/`} className="btn-custom border border-warning"> Go Back</Link>
+                <Link to={`/spacex-project`} className="btn-custom border border-warning"> Go Back</Link>
             </div>
         </div>
     )
