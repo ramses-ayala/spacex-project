@@ -31,17 +31,17 @@ const LandingPage = () => {
     const [stringToSearch, setStringToSearch] = useState<string>("");
     const [dateToSearch, setDateToSearch] = useState<string>("");
 
-    const [selectedOption, setSelectedOption] = useState<string>("rocketName");
+    const [optionSelected, setOptionlSelected] = useState<string>('rocketName');
     const [isSortedAsc, setIsSortedAsc] = useState<boolean>(false);
-
+    
 
     useEffect(() => {
 
         if (loading !== true) {
-            setUpcomingLaunches(data.launchesUpcoming);
+            setUpcomingLaunches(data?.launchesUpcoming);
         }
 
-    }, [loading, selectedOption]);
+    }, [loading]);
 
 
     useEffect(() => {
@@ -125,12 +125,12 @@ const LandingPage = () => {
                             Filter by:
                         </label>
 
-                        <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+                        <select value={optionSelected} onChange={(e) => setOptionlSelected(e.target.value)}>
                             <option value="rocketName">Rocket Name</option>
                             <option value="date">Date</option>
                         </select>
 
-                        {selectedOption !== "date" ? (
+                        {optionSelected !== 'date' ? (
                             <TextBox
                                 placeholder='Search By Rocket Name'
                                 handlerSearch={handlerSearch}
